@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>OrderOps AI</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                <i class="bi bi-cpu-fill"></i>
+            </div>
+
+            <div>
+                <h5>OrderOps AI</h5>
+                <span>Order Intelligence</span>
+            </div>
+
+        </div>
+
+
+        <div class="sidebar-content">
+
+            <div class="menu-title">
+                MAIN
+            </div>
+
+            <a
+                href="#"
+                class="nav-item active"
+                data-page="dashboard"
+            >
+                <i class="bi bi-grid-1x2-fill"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a
+                href="#"
+                class="nav-item"
+                data-page="orders"
+            >
+                <i class="bi bi-box-seam"></i>
+                <span>Orders</span>
+            </a>
+
+            <a
+                href="#"
+                class="nav-item"
+                data-page="customers"
+            >
+                <i class="bi bi-people"></i>
+                <span>Customers</span>
+            </a>
+
+            <a
+                href="#"
+                class="nav-item"
+                data-page="products"
+            >
+                <i class="bi bi-bag"></i>
+                <span>Products</span>
+            </a>
+
+
+            <div class="menu-title management-title">
+                MANAGEMENT
+            </div>
+
+            <a
+                href="#"
+                class="nav-item"
+                data-page="reviews"
+            >
+                <i class="bi bi-shield-exclamation"></i>
+                <span>Manual Reviews</span>
+            </a>
+
+            <a
+                href="#"
+                class="nav-item"
+                data-page="refunds"
+            >
+                <i class="bi bi-arrow-counterclockwise"></i>
+                <span>Refunds</span>
+            </a>
+
+        </div>
+
+
+        <div class="sidebar-footer">
+
+            <div class="system-status">
+
+                <span class="online-dot"></span>
+
+                <div>
+                    <strong>System Online</strong>
+                    <small>All services operational</small>
+                </div>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main-content">
+
+        <!-- TOP NAVBAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h4 id="page-title">
+                    Dashboard
+                </h4>
+
+                <p id="page-subtitle">
+                    Monitor your AI-powered order operations
+                </p>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <button class="notification-btn">
+
+                    <i class="bi bi-bell"></i>
+
+                    <span></span>
+
+                </button>
+
+
+                <div class="admin-profile">
+
+                    <div class="avatar">
+                        OA
+                    </div>
+
+                    <div class="profile-text">
+                        <strong>Admin</strong>
+                        <small>Operations Manager</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- PAGE CONTENT -->
+
+        <div class="page-container">
+
+
+            <!-- ================= DASHBOARD ================= -->
+
+            <section
+                id="dashboard-page"
+                class="page-section"
+            >
+
+                <div class="page-heading">
+
+                    <div>
+                        <h2>Good afternoon, Admin</h2>
+
+                        <p>
+                            Here's what's happening with your orders today.
+                        </p>
+                    </div>
+
+                    <button
+                        class="btn-primary-custom"
+                        onclick="navigateTo('orders')"
+                    >
+                        <i class="bi bi-box-seam"></i>
+                        View Orders
+                    </button>
+
+                </div>
+
+
+                <!-- STAT CARDS -->
+
+                <div class="row g-4 mb-4">
+
+                    <div class="col-xl-3 col-md-6">
+
+                        <div class="stat-card">
+
+                            <div class="stat-card-top">
+
+                                <div class="stat-icon blue">
+                                    <i class="bi bi-box-seam"></i>
+                                </div>
+
+                                <span class="stat-label blue-text">
+                                    TOTAL
+                                </span>
+
+                            </div>
+
+                            <div class="stat-title">
+                                Total Orders
+                            </div>
+
+                            <div
+                                class="stat-value"
+                                id="dashboard-total"
+                            >
+                                0
+                            </div>
+
+                            <div class="stat-description">
+                                All registered orders
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-xl-3 col-md-6">
+
+                        <div class="stat-card">
+
+                            <div class="stat-card-top">
+
+                                <div class="stat-icon orange">
+                                    <i class="bi bi-clock-history"></i>
+                                </div>
+
+                                <span class="stat-label orange-text">
+                                    ACTIVE
+                                </span>
+
+                            </div>
+
+                            <div class="stat-title">
+                                Pending Orders
+                            </div>
+
+                            <div
+                                class="stat-value"
+                                id="dashboard-pending"
+                            >
+                                0
+                            </div>
+
+                            <div class="stat-description">
+                                Currently processing
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-xl-3 col-md-6">
+
+                        <div class="stat-card">
+
+                            <div class="stat-card-top">
+
+                                <div class="stat-icon green">
+                                    <i class="bi bi-check-circle"></i>
+                                </div>
+
+                                <span class="stat-label green-text">
+                                    SUCCESS
+                                </span>
+
+                            </div>
+
+                            <div class="stat-title">
+                                Completed Orders
+                            </div>
+
+                            <div
+                                class="stat-value"
+                                id="dashboard-completed"
+                            >
+                                0
+                            </div>
+
+                            <div class="stat-description">
+                                Ready for fulfillment
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-xl-3 col-md-6">
+
+                        <div class="stat-card">
+
+                            <div class="stat-card-top">
+
+                                <div class="stat-icon red">
+                                    <i class="bi bi-shield-exclamation"></i>
+                                </div>
+
+                                <span class="stat-label red-text">
+                                    ATTENTION
+                                </span>
+
+                            </div>
+
+                            <div class="stat-title">
+                                Manual Reviews
+                            </div>
+
+                            <div
+                                class="stat-value"
+                                id="dashboard-reviews"
+                            >
+                                0
+                            </div>
+
+                            <div class="stat-description">
+                                Require attention
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="row g-4">
+
+
+                    <!-- RECENT ORDERS -->
+
+                    <div class="col-xl-8">
+
+                        <div class="content-card">
+
+                            <div class="card-header">
+
+                                <div>
+                                    <h5>Recent Orders</h5>
+
+                                    <p>
+                                        Latest order activity
+                                    </p>
+                                </div>
+
+                                <button
+                                    class="btn-secondary-custom"
+                                    onclick="navigateTo('orders')"
+                                >
+                                    View All
+                                </button>
+
+                            </div>
+
+
+                            <div class="table-responsive">
+
+                                <table class="custom-table">
+
+                                    <thead>
+
+                                        <tr>
+                                            <th>Order</th>
+                                            <th>Customer</th>
+                                            <th>Product</th>
+                                            <th>Quantity</th>
+                                            <th>Status</th>
+                                            <th></th>
+                                        </tr>
+
+                                    </thead>
+
+                                    <tbody id="recent-orders-table">
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- WORKFLOW -->
+
+                    <div class="col-xl-4">
+
+                        <div class="content-card workflow-card">
+
+                            <div class="card-header">
+
+                                <div>
+                                    <h5>AI Workflow</h5>
+
+                                    <p>
+                                        Order processing pipeline
+                                    </p>
+                                </div>
+
+                            </div>
+
+
+                            <div class="workflow">
+
+                                <div class="workflow-step active">
+
+                                    <div class="workflow-icon">
+                                        <i class="bi bi-box"></i>
+                                    </div>
+
+                                    <div>
+                                        <strong>Order Created</strong>
+                                        <small>Order received</small>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="workflow-line"></div>
+
+
+                                <div class="workflow-step">
+
+                                    <div class="workflow-icon">
+                                        <i class="bi bi-shield-check"></i>
+                                    </div>
+
+                                    <div>
+                                        <strong>Risk Analysis</strong>
+                                        <small>AI risk assessment</small>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="workflow-line"></div>
+
+
+                                <div class="workflow-step">
+
+                                    <div class="workflow-icon">
+                                        <i class="bi bi-boxes"></i>
+                                    </div>
+
+                                    <div>
+                                        <strong>Stock Check</strong>
+                                        <small>Availability analysis</small>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="workflow-line"></div>
+
+
+                                <div class="workflow-step">
+
+                                    <div class="workflow-icon">
+                                        <i class="bi bi-stars"></i>
+                                    </div>
+
+                                    <div>
+                                        <strong>AI Offer</strong>
+                                        <small>Alternative generation</small>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="workflow-line"></div>
+
+
+                                <div class="workflow-step">
+
+                                    <div class="workflow-icon">
+                                        <i class="bi bi-envelope"></i>
+                                    </div>
+
+                                    <div>
+                                        <strong>Customer Response</strong>
+                                        <small>Email decision</small>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="workflow-line"></div>
+
+
+                                <div class="workflow-step">
+
+                                    <div class="workflow-icon">
+                                        <i class="bi bi-check2-circle"></i>
+                                    </div>
+
+                                    <div>
+                                        <strong>Fulfillment</strong>
+                                        <small>Order completed</small>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= ORDERS ================= -->
+
+            <section
+                id="orders-page"
+                class="page-section d-none"
+            >
+
+                <div class="page-heading">
+
+                    <div>
+                        <h2>Orders</h2>
+
+                        <p>
+                            Manage and monitor all customer orders.
+                        </p>
+                    </div>
+
+                    <button
+                        class="btn-primary-custom"
+                        onclick="loadOrders()"
+                    >
+                        <i class="bi bi-arrow-clockwise"></i>
+                        Refresh
+                    </button>
+
+                </div>
+
+
+                <div class="content-card">
+
+                    <div class="filter-bar">
+
+                        <div class="search-wrapper">
+
+                            <i class="bi bi-search"></i>
+
+                            <input
+                                id="order-search"
+                                type="text"
+                                placeholder="Search by order ID..."
+                            >
+
+                        </div>
+
+
+                        <select
+                            id="status-filter"
+                            class="filter-select"
+                        >
+
+                            <option value="all">
+                                All Status
+                            </option>
+
+                            <option value="pending">
+                                Pending
+                            </option>
+
+                            <option value="processing">
+                                Processing
+                            </option>
+
+                            <option value="ready_for_fulfillment">
+                                Ready for Fulfillment
+                            </option>
+
+                            <option value="alternative_accepted">
+                                Alternative Accepted
+                            </option>
+
+                            <option value="refunded">
+                                Refunded
+                            </option>
+
+                            <option value="manual_review">
+                                Manual Review
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="table-responsive">
+
+                        <table class="custom-table">
+
+                            <thead>
+
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Customer</th>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="orders-table">
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= CUSTOMERS ================= -->
+
+            <section
+                id="customers-page"
+                class="page-section d-none"
+            >
+
+                <div class="page-heading">
+
+                    <div>
+                        <h2>Customers</h2>
+
+                        <p>
+                            View customer information.
+                        </p>
+                    </div>
+
+                    <button
+                        class="btn-primary-custom"
+                        onclick="loadCustomers()"
+                    >
+                        <i class="bi bi-arrow-clockwise"></i>
+                        Refresh
+                    </button>
+
+                </div>
+
+
+                <div class="content-card">
+
+                    <div class="table-responsive">
+
+                        <table class="custom-table">
+
+                            <thead>
+
+                                <tr>
+                                    <th>Customer ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="customers-table">
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= PRODUCTS ================= -->
+
+            <section
+                id="products-page"
+                class="page-section d-none"
+            >
+
+                <div class="page-heading">
+
+                    <div>
+                        <h2>Products</h2>
+
+                        <p>
+                            Monitor products and available inventory.
+                        </p>
+                    </div>
+
+                    <button
+                        class="btn-primary-custom"
+                        onclick="loadProducts()"
+                    >
+                        <i class="bi bi-arrow-clockwise"></i>
+                        Refresh
+                    </button>
+
+                </div>
+
+
+                <div class="content-card">
+
+                    <div class="table-responsive">
+
+                        <table class="custom-table">
+
+                            <thead>
+
+                                <tr>
+                                    <th>Product ID</th>
+                                    <th>Product</th>
+                                    <th>Price</th>
+                                    <th>Stock</th>
+                                    <th>Availability</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="products-table">
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= REVIEWS ================= -->
+
+            <section
+                id="reviews-page"
+                class="page-section d-none"
+            >
+
+                <div class="page-heading">
+
+                    <div>
+                        <h2>Manual Reviews</h2>
+
+                        <p>
+                            Orders flagged by the AI risk system.
+                        </p>
+                    </div>
+
+                    <button
+                        class="btn-primary-custom"
+                        onclick="loadReviews()"
+                    >
+                        <i class="bi bi-arrow-clockwise"></i>
+                        Refresh
+                    </button>
+
+                </div>
+
+
+                <div class="content-card">
+
+                    <div class="table-responsive">
+
+                        <table class="custom-table">
+
+                            <thead>
+
+                                <tr>
+                                    <th>Order</th>
+                                    <th>Customer</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="reviews-table">
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= REFUNDS ================= -->
+
+            <section
+                id="refunds-page"
+                class="page-section d-none"
+            >
+
+                <div class="page-heading">
+
+                    <div>
+                        <h2>Refunds</h2>
+
+                        <p>
+                            Process and monitor customer refunds.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="content-card">
+
+                    <div class="table-responsive">
+
+                        <table class="custom-table">
+
+                            <thead>
+
+                                <tr>
+                                    <th>Order</th>
+                                    <th>Customer</th>
+                                    <th>Product</th>
+                                    <th>Refund Amount</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="refunds-table">
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- ================= ORDER DETAILS MODAL ================= -->
+
+<div
+    class="modal fade"
+    id="orderModal"
+    tabindex="-1"
+>
+
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+
+        <div class="modal-content order-modal">
+
+            <div class="modal-header">
+
+                <div>
+
+                    <h5 class="modal-title">
+                        Order Details
+                    </h5>
+
+                    <span id="modal-order-number">
+                        Order
+                    </span>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                ></button>
+
+            </div>
+
+
+            <div
+                class="modal-body"
+                id="order-details-content"
+            >
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= ALERT ================= -->
+
+<div
+    id="toast-container"
+    class="toast-container position-fixed bottom-0 end-0 p-4"
+></div>
+
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+></script>
+
+<script src="script.js"></script>
+
+</body>
+</html>
