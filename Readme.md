@@ -128,10 +128,8 @@ Create a `.env` file and add your database, Gemini API, and email credentials:
 ```env
 DATABASE_URL=your_database_url
 GEMINI_API_KEY=your_gemini_api_key
-EMAIL_HOST=your_smtp_host
-EMAIL_PORT=your_smtp_port
 EMAIL_USERNAME=your_email
-EMAIL_PASSWORD=your_email_password
+EMAIL_APP_PASSWORD=your_email_password
 ```
 
 > ⚠️ Never commit `.env` or API keys/passwords to GitHub.
@@ -233,4 +231,7 @@ The system automatically sends customers an email containing:
 
 ## 👨‍💻 Author
 
-**Muhammad Owais**
+**Muhammad Owais Shabbir**
+
+GitHub:
+https://github.com/buildbyowais
